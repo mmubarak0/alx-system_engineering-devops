@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(ls)"
+telnet towel.blinkenlights.nl
