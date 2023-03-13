@@ -1,2 +1,2 @@
 #!/bin/bash
-awk -F: '{print $1 ":" $6}' /etc/passwd | sort -t, -nk1
+awk -F: '{print $1 ":" $6}' /etc/passwd | sort -t : -nk 1
