@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e $(cat iacta)$(cat iacta | tail -n 1)
+echo -e $(cat iacta)"\n"$(cat iacta | tail -n 1) > iacta
