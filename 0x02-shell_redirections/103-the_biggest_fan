@@ -1,2 +1,2 @@
 #!/bin/bash
-tail -n +2 $@ | cut -d' ' -f1 | sort | uniq -c | sort -nr | cut -c9-
+cat $@ | cut -d' ' -f1 | sort | uniq -c | sort -nr | cut -c9-
