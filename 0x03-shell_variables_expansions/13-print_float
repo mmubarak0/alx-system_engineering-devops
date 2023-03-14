@@ -1,1 +1,2 @@
 #!/bin/bash
+python3 -c "print(f\"{$NUM:.2f}\")"
