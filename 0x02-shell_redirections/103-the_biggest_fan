@@ -1,2 +1,2 @@
 #!/bin/bash
-tail -n+2 $@| cut --fields="1 4 6" | sort | uniq -c | sort -nr | cut -c9- | head -n11 | cut -f1 -d' ' | uniq
+tail -n+2 $@| cut --fields=1 -d' ' |sort| uniq -c | sort -nr | cut -c9- | head -n11
