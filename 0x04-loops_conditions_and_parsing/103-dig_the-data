@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# parse apache logs.
+
+log="$(awk '{print $1,$9}' apache-access.log)";
+printf "%s" "$log" | uniq -c | sort -r -n;
