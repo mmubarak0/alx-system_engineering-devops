@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# displays the content of the file /etc/passwd.
+
+input="/etc/passwd"
+while read -r line
+do
+  username="$(echo "$line" | cut -d ":" -f 1)";
+  password="$(echo "$line" | cut -d ":" -f 2)";
+  uid="$(echo "$line" | cut -d ":" -f 3)";
+  gid="$(echo "$line" | cut -d ":" -f 4)";
+  gecos="$(echo "$line" | cut -d ":" -f 5)";
+  homedir="$(echo "$line" | cut -d ":" -f 6)";
+  cmdshell="$(echo "$line" | cut -d ":" -f 7)";
+  echo "The user $username is part of the $gid gang, lives in $homedir and rides $cmdshell. $uid's place is protected by the passcode $password, more info about the user here: $gecos";
+done < "$input"
