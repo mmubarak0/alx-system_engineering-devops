@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# print infinty and beyond million times.
+
+while true;
+do
+	echo "To infinity and beyond";
+	sleep 2;
+done
