@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# show bash pid.
+
+pgrep -lf bash
