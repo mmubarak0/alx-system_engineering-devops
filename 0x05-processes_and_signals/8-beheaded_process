@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# kill 7 invincible!!!.
+
+kill -9 "$(pgrep -fn ./7-highlander)"
