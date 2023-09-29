@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # stop infinity and beyond program.
 
-kill -s SIGSTOP "$(pgrep bash | tail -n3 | head -n1)"
+kill "$(pgrep -fn ./4-to_infinity_and_beyond)"

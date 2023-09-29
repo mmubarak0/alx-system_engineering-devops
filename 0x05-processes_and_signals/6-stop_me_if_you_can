@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# stop infinity and beyond program.
+
+pkill bash
