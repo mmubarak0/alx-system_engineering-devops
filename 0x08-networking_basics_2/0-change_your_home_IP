@@ -2,7 +2,7 @@
 # find and replace a line in host file.
 
 file="/etc/hosts"
-newfile="~/hosts.new"
+newfile="$HOME/hosts.new"
 l1="$(grep localhost$ -n < $file | cut -d ":" -f 1)"
 l2="$(grep facebook.com$ -n < $file | cut -d ":" -f 1)"
 n=1
