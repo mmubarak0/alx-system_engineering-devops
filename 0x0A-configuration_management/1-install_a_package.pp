@@ -1,6 +1,5 @@
-# Install flask
-package { 'pip install flask':
-  ensure   => '2.1.0', # What state the package should be in. On...
-  name     => flask, # (namevar) The package name.  This is the name that the...
-  provider => pip3, # (namevar) The specific backend to use for this `package...
+# Install flask version 2.1.0
+package {'flask':
+  ensure   => '2.1.0',
+  provider => 'pip3',
 }
