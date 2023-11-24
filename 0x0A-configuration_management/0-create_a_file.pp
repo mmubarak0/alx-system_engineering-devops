@@ -1,3 +1,4 @@
+# Create a file
 file { 'create tmp file':
   path    => '/tmp/school',
   content => 'I love Puppet',
