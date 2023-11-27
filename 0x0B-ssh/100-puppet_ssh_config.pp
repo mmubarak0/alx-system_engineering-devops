@@ -1,14 +1,12 @@
 # client configuration.
-file { '~/.ssh':
-  ensure  => directory,
+file_line { 'Turn off passwd auth':
+  path   => '/etc/ssh/ssh_config',
+  ensure => 'present',
+  line   =>  'PasswordAuthentication no',
 }
 
-file_line { '~/.ssh/config':
-  ensure   => 'present',
-  content  =>  "PasswordAuthentication no",
-}
-
-file_line { '~/.ssh/config':
-  ensure   => 'present',
-  content  =>  "IdentityFile ~/.ssh/school",
+file_line { 'Declare identity file':
+  path   => '/etc/ssh/ssh_config',
+  ensure => 'present',
+  line   =>  'IdentityFile ~/.ssh/school',
 }
