@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# fix the apache server.
+
+service apache2 restart
