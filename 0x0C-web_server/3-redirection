@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# install nginx and configure it.
+
+sudo apt-get -y update;
+sudo apt-get -y install nginx;
+sudo chown -R "$USER":"$USER" /var/www/html;
+sudo chmod -R 755 /var/www;
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html;
+
+new_string="location \/redirect_me \{\n\t\treturn 301 \$scheme:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t\}\n\t# pass PHP scripts to FastCGI server"
+string_to_replace="# pass PHP scripts to FastCGI server";
+file="/etc/nginx/sites-enabled/default";
+sed -i "s/$string_to_replace/$new_string/" $file;
+
+sudo service nginx restart;
