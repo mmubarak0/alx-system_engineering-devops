@@ -10,48 +10,35 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/error-404.html;
 
 sudo ufw allow 80;
 
-# # configure the server to redirect the page '/redirect_me' to another page.
-# new_line1="location \/redirect_me \{"
-# new_line2="\n\t\treturn 301 \$scheme:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t\}";
-# new_string="${new_line1}${new_line2}\n\t# pass PHP scripts to FastCGI server";
-# string_to_replace="# pass PHP scripts to FastCGI server";
-# file="/etc/nginx/sites-enabled/default";
-# if ! grep -Pxq "\t$new_line1" $file
-# 	then
-# 	sudo sed -i "s/$string_to_replace/$new_string/" $file;
-# fi
-# 
-# # create a custom error 404 page.
-# new_line="error_page 404 \/error-404.html;"
-# new_string="${new_line}\n\t# pass PHP scripts to FastCGI server";
-# string_to_replace="# pass PHP scripts to FastCGI server";
-# file="/etc/nginx/sites-enabled/default";
-# if ! grep -Pxq "\t$new_line" $file
-# 	then
-# 	sudo sed -i "s/$string_to_replace/$new_string/" $file;
-# fi
-# 
-# # create a custom error 404 page.
-# new_line="add_header X-Served-By $HOSTNAME;"
-# new_string="${new_line}\n\t# pass PHP scripts to FastCGI server";
-# string_to_replace="# pass PHP scripts to FastCGI server";
-# file="/etc/nginx/sites-enabled/default";
-# if ! grep -Pxq "\t$new_line" $file
-# 	then
-# 	sudo sed -i "s/$string_to_replace/$new_string/" $file;
-# fi
-printf %s "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    add_header X-Served-By $HOSTNAME;
-    root   /var/www/html;
-    index  index.html index.htm;
+# configure the server to redirect the page '/redirect_me' to another page.
+new_line1="location \/redirect_me \{"
+new_line2="\n\t\treturn 301 \$scheme:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t\}";
+new_string="${new_line1}${new_line2}\n\t# pass PHP scripts to FastCGI server";
+string_to_replace="# pass PHP scripts to FastCGI server";
+file="/etc/nginx/sites-enabled/default";
+if ! grep -Pxq "\t$new_line1" $file
+	then
+	sudo sed -i "s/$string_to_replace/$new_string/" $file;
+fi
 
-    location /redirect_me {
-        return 301 http://youtube.com/;
-    }
+# create a custom error 404 page.
+new_line="error_page 404 \/error-404.html;"
+new_string="${new_line}\n\t# pass PHP scripts to FastCGI server";
+string_to_replace="# pass PHP scripts to FastCGI server";
+file="/etc/nginx/sites-enabled/default";
+if ! grep -Pxq "\t$new_line" $file
+	then
+	sudo sed -i "s/$string_to_replace/$new_string/" $file;
+fi
 
-    error_page 404 /error-404.html;
-}" > /etc/nginx/sites-available/default
+# create a custom error 404 page.
+new_line="add_header X-Served-By $HOSTNAME;"
+new_string="${new_line}\n\t# pass PHP scripts to FastCGI server";
+string_to_replace="# pass PHP scripts to FastCGI server";
+file="/etc/nginx/sites-enabled/default";
+if ! grep -Pxq "\t$new_line" $file
+	then
+	sudo sed -i "s/$string_to_replace/$new_string/" $file;
+fi
 
 sudo service nginx restart;
