@@ -29,11 +29,11 @@ then
 fi
 
 # create a custom error 404 page.
-new_line="add_header X-Served-By \$HOSTNAME;"
+new_line="add_header X-Served-By $HOSTNAME;"
 new_string="${new_line}\n\t${string_to_replace}";
 if ! grep -Pxq "\t$new_line" $file
 then
         sudo sed -i "s/$string_to_replace/$new_string/" $file;
 fi
 
-sudo service nginx start;
+sudo service nginx restart;
