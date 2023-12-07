@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # fix the container server
 
-sudo apt install nginx;
+sudo apt install -y nginx;
 sudo service nginx start;
