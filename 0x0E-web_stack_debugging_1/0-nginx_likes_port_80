@@ -2,4 +2,5 @@
 # fix the container server
 
 sudo apt install -y nginx;
+sudo ufw allow 80;
 sudo service nginx start;
