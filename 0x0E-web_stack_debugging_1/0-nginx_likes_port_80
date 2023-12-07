@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # fix the container server
 
+sudo apt purge -y nginx;
 sudo apt install -y nginx;
 sudo ufw allow 80;
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default;
 sudo service nginx start;
