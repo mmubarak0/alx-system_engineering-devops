@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# run nginx server on onther user.
+sudo useradd nginx
+
+file="/etc/nginx/nginx.conf";
+if ! grep -Pxq "user nginx" $file
+then
+        sudo sed -i "s/user www-data/user nginx/" $file;
+fi
+file="/etc/nginx/sites-enabled/default";
+if ! grep -Pxq "8080" $file
+then
+        sudo sed -i "s/80/8080/g" $file;
+fi
+
+sudo chown -R nginx:nginx /var/log/nginx;
+sudo chmod -R 755 /var/log/nginx;
+sudo chown -R nginx:nginx /run/nginx.pid;
+sudo chmod -R 755 /run/nginx.pid;
+sudo chmod -R 755 /etc/nginx/nginx.conf
+
+sudo -u nginx nginx -c /etc/nginx/nginx.conf
