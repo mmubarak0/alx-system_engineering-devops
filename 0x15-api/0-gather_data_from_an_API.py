@@ -26,4 +26,4 @@ if __name__ == "__main__":
 tasks({comp_tasks_number}/{all_tasks_number}):"
     )
     for task in comp_tasks:
-        print(f"\t{task.get('title')}")
+        print(f"\t {task.get('title')}")
