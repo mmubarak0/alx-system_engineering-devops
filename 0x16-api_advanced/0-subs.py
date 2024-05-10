@@ -1,19 +1,24 @@
 #!/usr/bin/python3
 """Return number of subcribers of a subreddit."""
 import requests
+import requests.auth
 
 
 def number_of_subscribers(subreddit):
     """Find number of subcribers."""
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 "
-        "Safari/537.36 Edg/120.0.0.0"
-    }
-    with requests.Session() as s:
-        url = f"https://www.reddit.com/r/{subreddit}/about.json"
-        sub = s.get(url, headers=headers, allow_redirects=False)
-        if sub.status_code >= 300:
-            return 0
-        subscribers = sub.json()["data"]["subscribers"]
+            "User-Agent": "Mozilla/5.0",
+            "x-requested-with": "XMLHttpRequest"
+        }
+    auth = requests.auth.HTTPBasicAuth(
+            'p-jcoLKBynTLew', 'gko_LXELoV07ZBNUXrvWZfzE3aI'
+        )
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    response = requests.get(
+                url, headers=headers, allow_redirects=False, auth=auth
+            )
+    if response.status_code >= 300:
+        data = response.json()
+        subscribers = data['data']['subscribers']
         return subscribers
+    return 0
