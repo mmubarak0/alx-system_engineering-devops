@@ -12,11 +12,10 @@ def top_ten(subreddit):
     }
     with requests.Session() as s:
         url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-        try:
-            sub = s.get(url, headers=headers).json()
-            hotest = sub["data"]["children"]
-        except Exception:
+        sub = s.get(url, headers=headers)
+        if sub.status_code >= 300:
             print(None)
             return
+        hotest = sub.json()["data"]["children"]
         for i in range(10):
             print(hotest[i]["data"]["title"])

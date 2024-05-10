@@ -12,9 +12,8 @@ def number_of_subscribers(subreddit):
     }
     with requests.Session() as s:
         url = f"https://www.reddit.com/r/{subreddit}/about.json"
-        try:
-            sub = s.get(url, headers=headers).json()
-            subscribers = sub["data"]["subscribers"]
-        except Exception:
+        sub = s.get(url, headers=headers, allow_redirects=False)
+        if sub.status_code >= 300:
             return 0
+        subscribers = sub.json()["data"]["subscribers"]
         return subscribers
