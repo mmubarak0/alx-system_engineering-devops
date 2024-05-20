@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # reload gunicorn in graceful mode
 
-sudo kill -HUP "$(ps -C gunicorn fch -o pid | head -n 1)"
+sudo kill -HUP "$(pgrep -a gunicorn | grep web_dynamic.2-hbnb | cut -f1 -d" " | head -n1)"
