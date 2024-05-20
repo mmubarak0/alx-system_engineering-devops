@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# reload gunicorn in graceful mode
+
+sudo kill -HUP "$(ps -C gunicorn fch -o pid | head -n 1)"
